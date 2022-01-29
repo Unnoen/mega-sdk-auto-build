@@ -23,7 +23,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Cache vcpkg binaries
+      id: cache-primes
+      uses: actions/cache@v2
+      with:
+        path: "%LOCALAPPDATA%/vcpkg/archives"
+        key: ${{ runner.os }}-vcpkg-${{ hashFiles('contrib/cmake/**') }}
 
     - name: Build
       run: cmake -DTRIPLET=x64-windows-mega -DEXTRA_ARGS="-DUSE_PDFIUM=0" -P build_from_scratch.cmake
-      working-directory: contrib\cmake
+      working-directory: "contrib/cmake"
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: DelvUI-debug-${{ github.sha }}
+        path: "build-x64-windows-mega"
