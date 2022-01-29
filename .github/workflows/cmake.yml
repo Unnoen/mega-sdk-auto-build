@@ -26,4 +26,4 @@ jobs:
 
     - name: Build
       run: cmake -DTRIPLET=x64-windows-mega -DEXTRA_ARGS="-DUSE_PDFIUM=0" -P build_from_scratch.cmake
-      working-directory: .\sdk\contrib\cmake
+      working-directory: contrib\cmake
