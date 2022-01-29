@@ -38,5 +38,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: DelvUI-debug-${{ github.sha }}
+        name: MEGAsdk-debug-${{ github.sha }}
         path: "build-x64-windows-mega"
